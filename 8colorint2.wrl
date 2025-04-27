@@ -1,0 +1,52 @@
+#VRML V2.0 utf8
+WorldInfo {
+ title "Untitled3"
+ info ["This Web3D Content was created with Vivaty Studio, a Web3D authoring tool"
+ "www.mediamachines.com"
+ "This Web3D Content was created with Vivaty Studio, a Web3D authoring tool"]
+}
+## Vizthumbnail  Thumb_8colorint2_wrl1330011596127217.jpg
+DEF Import_8colorint2_wrl0 Group {
+ children [
+  DEF Import_8colorint2_wrl Anchor {
+   url "https://www.drivehq.com/file/df.aspx/publish/dipakshirbhate/VW/WEB DRIVEHQ MY-VRML-WORLD.wrl"
+   children [
+    Shape {
+     appearance Appearance {
+      material DEF ballmaterial Material {
+       ambientIntensity 0.200
+       shininess 0.200
+       diffuseColor 0 0 1
+      }
+     }
+     geometry Sphere {
+      radius 1.000
+     }
+    }
+    DEF timer TimeSensor {
+     cycleInterval 5.000
+     loop TRUE
+     startTime -1.000
+    }
+    DEF colrotator ColorInterpolator {
+     key [
+     0 .5 1
+     ]
+     keyValue [
+     0 0 1
+     1 0 0
+     0 0 1
+     ]
+    }
+   ]
+  }
+ ]
+}
+DEF vizx_init TimeSensor {
+ cycleInterval 0.100
+ loop TRUE
+}
+ROUTE vizx_init.cycleTime TO timer.startTime
+ROUTE vizx_init.cycleTime TO vizx_init.stopTime
+ROUTE timer.fraction_changed TO colrotator.set_fraction
+ROUTE colrotator.value_changed TO ballmaterial.set_diffuseColor
